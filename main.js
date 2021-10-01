@@ -22,3 +22,7 @@
 
 // Table/Collection schema:
 // Customers customerId (String) firstName (String) lastName (String) Orders orderId (String) customerId (String) item (String) quantity (Number)
+const hello = (name) => {
+  return `Hello ${name}`
+};
+console.log(hello("Kym"))
