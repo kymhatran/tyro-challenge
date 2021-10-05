@@ -1,6 +1,6 @@
 const credentials = {
-    username: "kymha",
-    password: "Forecast04",
+    username: "username",
+    password: "password",
     server: "localhost",
     database: "testdb"
 }

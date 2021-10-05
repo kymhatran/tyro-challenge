@@ -41,7 +41,7 @@ pool.connect(function(err){
 let csvStream = fastcsv.parseFile(url, {headers:true})
   .on('data', (record) => {
     csvStream.pause();
-  // console.log(results)
+  console.log(record)
       let orderId = record.orderId;
       let customerId = record.customerId;
       let item = record.item;
