@@ -22,7 +22,54 @@
 
 // Table/Collection schema:
 // Customers customerId (String) firstName (String) lastName (String) Orders orderId (String) customerId (String) item (String) quantity (Number)
-const hello = (name) => {
-  return `Hello ${name}`
-};
-console.log(hello("Kym"))
+
+const fs = require('fs');
+const csv = require('csv-parser');
+const  pool = require('./pgdb');
+const fastcsv = require("fast-csv");
+const url = './data.csv';
+
+let results = [];
+
+pool.connect(function(err){
+  if(err)
+  {
+    console.log(err);
+  }
+});
+
+let csvStream = fastcsv.parseFile(url, {headers:true})
+  .on('data', (record) => {
+    csvStream.pause();
+  // console.log(results)
+      let orderId = record.orderId;
+      let customerId = record.customerId;
+      let item = record.item;
+      let quantity = record.quantity;
+
+
+    pool.query("INSERT INTO orders(orderId, customerId, item, quantity) \ VALUES($1, $2, $3, $4)", [orderId, customerId, item, quantity],
+      function(err){
+        if(err)
+        {
+          console.log(err);
+        }
+    });
+    csvStream.resume();
+
+  }).on('end', () => {
+    console.log("job is done");
+  }).on("error", function(err){
+    console.log(err);
+  });
+
+// this will add an event called data to read all the data in the CSV file.
+
+
+// pipe consolidates the functions together
+// Create a database through pg with the schema parameters
+// database is connected through terminal
+// the insert and select functions are coded in JS
+// run the test in Jest
+// test the functionality to insert the the data
+// databases: customer and order table
