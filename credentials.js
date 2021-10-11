@@ -1,6 +1,6 @@
 const credentials = {
-DB_USER: "kymha",
-DB_PASSWORD: "Forecast04",
+DB_USER: "username",
+DB_PASSWORD: "password",
 DB_HOST: "localhost",
 DB_DATABASE: "testdb"
 };
