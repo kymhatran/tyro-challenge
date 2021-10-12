@@ -39,7 +39,12 @@ To run this node.js code in your terminal `node main.js`
 This code will read the `data.csv` file to insert the order but not before identifying is the customer is in the customers table.
 
 ## Testing
-
+Jest package installed to test the code.
+The approach to unit testing was to split the insert function from the main.js file and run the test, the attempt is to ensure the sample order can be inserted into the database.
+Run the below code into the terminal
+```
+npm test
+```
 
 ## Package list
 * [csv-parser](https://www.npmjs.com/package/csv-parser)
